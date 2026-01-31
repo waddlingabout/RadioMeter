@@ -1,0 +1,22 @@
+{
+    "Group": "waddle",
+    "Name": "RadioMeter",
+    "Version": "1.0-SNAPSHOT",
+    "Description": "A mod that spreads long lost loot around the world and provides a mysterious device to find it!",
+    "Authors": [
+        {
+            "Name": "Erik Nylander"
+        }
+    ],
+    "Website": "https://mods.waddle.me/radiometer",
+    "ServerVersion": "*",
+    "Dependencies": {
+        
+    },
+    "OptionalDependencies": {
+        
+    },
+    "DisabledByDefault": false,
+    "Main": "me.waddle.RadioMeter.RadioMeter",
+    "IncludesAssetPack": true
+}
