@@ -11,7 +11,8 @@
     "Website": "https://mods.waddle.me/radiometer",
     "ServerVersion": "*",
     "Dependencies": {
-        
+        "Hytale:EntityModule": "*",
+        "Hytale:BlockModule": "*"
     },
     "OptionalDependencies": {
         

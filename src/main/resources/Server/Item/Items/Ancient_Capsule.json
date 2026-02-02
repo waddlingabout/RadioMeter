@@ -1,6 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.items.Furniture_Ancient_Chest_Small.name"
+    "Name": "items.loot_capsule.name",
+    "Description": "items.loot_capsule.description"
   },
   "PlayerAnimationsId": "Block",
   "Categories": [
@@ -63,6 +64,11 @@
     "Interactions": {
       "Primary": "Break_Container",
       "Use": "Open_Container"
+    },
+    "BlockEntity": {
+      "Components": {
+        "LootCapsule_Data": {}
+      }
     }
   },
   "Model": "Blocks/RadioMeter/LootCapsule.blockymodel",

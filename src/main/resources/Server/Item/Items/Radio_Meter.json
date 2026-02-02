@@ -1,0 +1,59 @@
+{
+  "TranslationProperties": {
+    "Name": "items.radio_meter.name",
+    "Description": "items.radio_meter.description"
+  },
+  "Categories": [
+    "Items.Tools"
+  ],
+  "Icon": "Icons/ItemsGenerated/Radio_Meter.png",
+  "Quality": "Rare",
+  "ItemLevel": 20,
+  "Recipe": {
+    "TimeSeconds": 3.5,
+    "KnowledgeRequired": false,
+    "Input": [
+      {
+        "ItemId": "Ingredient_Bar_Iron",
+        "Quantity": 6
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Weapon_Longsword"
+        ],
+        "Id": "Weapon_Bench"
+      }
+    ]
+  },
+  "Model": "Blocks/RadioMeter/Radio_Meter.blockymodel",
+  "Texture": "Blocks/RadioMeter/Radio_Meter.png",
+  "IconProperties": {
+    "Scale": 1.3,
+    "Rotation": [
+      14,
+      80,
+      0
+    ],
+    "Translation": [
+      -5,
+      -10
+    ]
+  },
+  "DroppedItemAnimation": "Items/Animations/Dropped/Dropped_Diagonal_Left.blockyanim",
+  "MaxDurability": 120,
+  "DurabilityLossOnHit": 0.52,
+  "Tags": {
+    "Type": [
+      "Weapon"
+    ],
+    "Family": [
+      "Longsword"
+    ]
+  },
+  "ItemSoundSetId": "ISS_Items_Gadget",
+  "PlayerAnimationsId": "Stick",
+  "Animation": "Blocks/Animations/RadioMeterSpin.blockyanim"
+}
