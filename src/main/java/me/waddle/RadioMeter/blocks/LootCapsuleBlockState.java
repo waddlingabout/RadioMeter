@@ -16,7 +16,6 @@ import com.hypixel.hytale.server.core.modules.block.BlockModule;
 import com.hypixel.hytale.server.core.modules.entity.item.ItemComponent;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
-import com.hypixel.hytale.server.core.universe.world.meta.BlockState;
 import com.hypixel.hytale.server.core.universe.world.meta.state.ItemContainerState;
 import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 
@@ -26,11 +25,11 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 import javax.annotation.Nonnull;
 
-public class LootCapsuleBlockComponent implements  Component<ChunkStore>
+public class LootCapsuleBlockState extends ItemContainerState
 {
-    public static final BuilderCodec<LootCapsuleBlockComponent> CODEC = BuilderCodec.builder(
-                    LootCapsuleBlockComponent.class,
-                    LootCapsuleBlockComponent::new)
+    public static final BuilderCodec<LootCapsuleBlockState> CODEC = BuilderCodec.builder(
+                    LootCapsuleBlockState.class,
+                    LootCapsuleBlockState::new)
             .append(new KeyedCodec<>("Opened", Codec.BOOLEAN),
                     (state, value) -> state.opened = value,
                     state -> state.opened)
@@ -41,7 +40,7 @@ public class LootCapsuleBlockComponent implements  Component<ChunkStore>
             .add()
             .build();
 
-    public LootCapsuleBlockComponent() {
+    public LootCapsuleBlockState() {
     }
 
     private boolean opened = true;
@@ -52,7 +51,6 @@ public class LootCapsuleBlockComponent implements  Component<ChunkStore>
         this.opened = opened;
     }
 
-
     private int frequency;
     public int getFrequency() {
         return frequency;
@@ -61,20 +59,19 @@ public class LootCapsuleBlockComponent implements  Component<ChunkStore>
         this.frequency = frequency;
     }
 
-
-    private static ComponentType<ChunkStore, LootCapsuleBlockComponent> TYPE;
-
-    public static void setComponentType(ComponentType<ChunkStore, LootCapsuleBlockComponent> type) {
-        TYPE = type;
-    }
-
-    public static ComponentType<ChunkStore, LootCapsuleBlockComponent> getComponentType() {
-        return TYPE;
-    }
-    @NullableDecl
     @Override
-    public LootCapsuleBlockComponent clone() {
-        return new LootCapsuleBlockComponent();
+    public void onOpen(@Nonnull Ref<EntityStore> ref, @Nonnull World world, @Nonnull Store<EntityStore> store) {
+        world.execute(() -> {
+            var player = store.getComponent(ref, PlayerRef.getComponentType());
+            if (player != null) {
+                world.sendMessage(Message.raw("Opened by: " + player.getUsername()));
+            }
+            else {
+                world.sendMessage(Message.raw("Loot Capsule Opened!"));
+            }
+        });
+
+        this.setOpened(true);
     }
 
 }

@@ -14,7 +14,7 @@ import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.util.InventoryHelper;
 import me.waddle.RadioMeter.RadioMeter;
-import me.waddle.RadioMeter.RadioUserComponent;
+import me.waddle.RadioMeter.components.RadioUserComponent;
 import me.waddle.RadioMeter.registries.LootCapsuleInfo;
 import me.waddle.RadioMeter.registries.LootCapsuleRegistry;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
@@ -25,8 +25,10 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 public class RadioPingSystem extends EntityTickingSystem<EntityStore> {
 
 
+
     @Override
-    public void tick(float v, int i, @NonNullDecl ArchetypeChunk<EntityStore> archetypeChunk, @NonNullDecl Store<EntityStore> store, @NonNullDecl CommandBuffer<EntityStore> commandBuffer) {
+    public void tick(float v, int i, @NonNullDecl ArchetypeChunk<EntityStore> archetypeChunk,
+                     @NonNullDecl Store<EntityStore> store, @NonNullDecl CommandBuffer<EntityStore> commandBuffer) {
 
 
         // player has a radio in hand
@@ -41,11 +43,11 @@ public class RadioPingSystem extends EntityTickingSystem<EntityStore> {
         if(transformComponent == null) {
             return;
         }
-        if(!isHoldingRadio(ref, store)) {
+        if(!isHoldingRadio(ref, commandBuffer)) {
             return;
         }
 
-        RadioUserComponent radioUserComponent = store.getComponent(ref, RadioUserComponent.getComponentType());
+        RadioUserComponent radioUserComponent = commandBuffer.getComponent(ref, RadioUserComponent.getComponentType());
 
         // does the player have a radiocomponent?
         // add if not
@@ -86,9 +88,9 @@ public class RadioPingSystem extends EntityTickingSystem<EntityStore> {
 
 
 
-    private boolean isHoldingRadio(Ref<EntityStore> ref, Store<EntityStore> store) {
+    private boolean isHoldingRadio(Ref<EntityStore> ref, CommandBuffer<EntityStore> commandBuffer) {
 
-        Player player = store.getComponent(ref, Player.getComponentType());
+        Player player = commandBuffer.getComponent(ref, Player.getComponentType());
         if(player == null) {
             return false;
         }

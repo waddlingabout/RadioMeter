@@ -5,7 +5,9 @@ import com.hypixel.hytale.component.*;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.RefSystem;
 import com.hypixel.hytale.math.util.ChunkUtil;
+import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.modules.block.BlockModule;
+import com.hypixel.hytale.server.core.universe.Universe;
 import com.hypixel.hytale.server.core.universe.world.chunk.WorldChunk;
 import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 import me.waddle.RadioMeter.RadioMeter;
@@ -31,9 +33,12 @@ public class LootCapsuleInitializer extends RefSystem<ChunkStore> {
 
             WorldChunk worldChunk = (WorldChunk) commandBuffer.getComponent(info.getChunkRef(), WorldChunk.getComponentType());
             if (worldChunk != null) {
+                Universe.get().sendMessage(Message.raw("Registered new Lootcapsule"));
                 LootCapsuleRegistry registry = RadioMeter.getLootCapsuleRegistry();
+                int globalX = x + (worldChunk.getX() * 32);
+                int globalZ = z + (worldChunk.getZ() * 32);
                 //register loot capsule
-                registry.register(x,y,z, generator.getFrequency());
+                registry.register(globalX,y,globalZ, generator.getFrequency());
             }
         }
     }
@@ -51,10 +56,13 @@ public class LootCapsuleInitializer extends RefSystem<ChunkStore> {
 
             WorldChunk worldChunk = (WorldChunk) commandBuffer.getComponent(info.getChunkRef(), WorldChunk.getComponentType());
             if (worldChunk != null) {
+                Universe.get().sendMessage(Message.raw("Registered new Lootcapsule"));
+
                 //unregister loot capsule
                 LootCapsuleRegistry registry = RadioMeter.getLootCapsuleRegistry();
-                //register loot capsule
-                registry.unregister(x,y,z);
+                int globalX = x + (worldChunk.getX() * 32);
+                int globalZ = z + (worldChunk.getZ() * 32);
+                registry.unregister(globalX,y,globalZ);
             }
         }
     }

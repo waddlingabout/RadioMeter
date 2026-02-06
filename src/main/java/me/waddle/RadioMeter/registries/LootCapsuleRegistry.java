@@ -12,10 +12,20 @@ public final class LootCapsuleRegistry {
         activeCapsules.add(new LootCapsuleInfo(x, y, z, frequency));
     }
     public void unregister(int x, int y, int z) {
-        //activeCapsules.remove();
+        activeCapsules.removeIf(c ->
+                c.getX() == x &&
+                        c.getY() == y &&
+                        c.getZ() == z
+        );
     }
 
     public Set<LootCapsuleInfo> snapshot() {
         return Set.copyOf(activeCapsules);
+    }
+
+    public String getAllCapsulesString() {
+        var list = snapshot();
+
+        return list.toString();
     }
 }

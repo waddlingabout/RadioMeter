@@ -67,7 +67,8 @@
     },
     "BlockEntity": {
       "Components": {
-        "LootCapsule_Data": {}
+        "LootCapsule_Component": {},
+        "LootCapsule_State": {}
       }
     }
   },
