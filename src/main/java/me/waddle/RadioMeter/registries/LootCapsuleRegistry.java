@@ -23,9 +23,4 @@ public final class LootCapsuleRegistry {
         return Set.copyOf(activeCapsules);
     }
 
-    public String getAllCapsulesString() {
-        var list = snapshot();
-
-        return list.toString();
-    }
 }

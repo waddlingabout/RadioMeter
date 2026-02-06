@@ -11,6 +11,7 @@ import me.waddle.RadioMeter.commands.RadioCommands.RadioCommandCollection;
 import me.waddle.RadioMeter.components.RadioUserComponent;
 import me.waddle.RadioMeter.registries.LootCapsuleRegistry;
 import me.waddle.RadioMeter.systems.LootCapsuleInitializer;
+import me.waddle.RadioMeter.systems.RadioFindClosestSystem;
 import me.waddle.RadioMeter.systems.RadioPingSystem;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -55,6 +56,7 @@ public class RadioMeter extends JavaPlugin {
 
 
 
+        getEntityStoreRegistry().registerSystem(new RadioFindClosestSystem());
         getEntityStoreRegistry().registerSystem(new RadioPingSystem());
 
         getCommandRegistry().registerCommand(new DebugCommand());

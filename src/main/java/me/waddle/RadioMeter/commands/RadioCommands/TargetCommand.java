@@ -37,7 +37,12 @@ public class TargetCommand extends AbstractPlayerCommand
                         return;
                     }
 
-                    commandContext.sendMessage(Message.raw("Not implemented"));
+                    int targetFreq = radio.getTargetFrequency();
+                    if(targetFreq == -1){
+                        commandContext.sendMessage(Message.raw("No target frequency set"));
+                        return;
+                    }
+                    commandContext.sendMessage(Message.raw("Target frequency: " + targetFreq));
                 }
         );
 
